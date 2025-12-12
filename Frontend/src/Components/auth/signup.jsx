@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Validate_obj from "../../Validation.js";
+import API from '../../apiBase';
 
 const SignupForm = () => {
   const [data, setData] = useState({
@@ -55,7 +56,7 @@ const SignupForm = () => {
     formDataBody.append("file", data.file);
 
     try {
-      await axios.post("http://localhost:8080/user/signup", formDataBody, {
+      await axios.post(`${API}/user/signup`, formDataBody, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

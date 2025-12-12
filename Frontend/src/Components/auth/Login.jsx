@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setUserEmail } from "../../Redux/User/UserAction";
+import API from '../../apiBase';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/user/login",
+        `${API}/user/login`,
         information
       );
       localStorage.setItem("token", response.data.token);

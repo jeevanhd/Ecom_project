@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import ImageModal from "../Components/imageModals/imageModal";
+import API from '../apiBase';
 
 const SinglePageProduct = () => {
   const [searchParams] = useSearchParams();
@@ -21,7 +22,7 @@ const SinglePageProduct = () => {
       }
       try {
         const response = await axios.get(
-          `http://localhost:8080/product/get-single?id=${id}&token=${token}`
+          `${API}/product/get-single?id=${id}&token=${token}`
         );
 
         setProduct(response.data.data);

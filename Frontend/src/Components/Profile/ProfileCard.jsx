@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import API from '../../apiBase';
 
 const Card = ({ children, className = "" }) => {
   return (
@@ -37,7 +38,7 @@ const ProfileCard = () => {
     }
 
     const response = await axios.get(
-      `http://localhost:8080/user/user-data?token=${token}`
+      `${API}/user/user-data?token=${token}`
     );
 
     setUserData(response.data.data);
@@ -54,7 +55,7 @@ const ProfileCard = () => {
     }
     try {
       const response = await axios.delete(
-        `http://localhost:8080/user/user-data/${id}?token=${token}`
+        `${API}/user/user-data/${id}?token=${token}`
       );
       getUserData();
     } catch (error) {

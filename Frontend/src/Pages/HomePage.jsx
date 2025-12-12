@@ -3,6 +3,7 @@ import { Filter, Search, Shield, Star, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../Components/ProductCard/Card.jsx";
+import API from '../apiBase';
 
 function HomePage() {
   const [data, setData] = useState([]);
@@ -15,7 +16,7 @@ function HomePage() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:8080/product/get-products`
+        `${API}/product/get-products`
       );
       setData(response.data.data);
     } catch (error) {
@@ -31,7 +32,7 @@ function HomePage() {
 
   const handelDelete = async (id) => {
     const response = await axios.delete(
-      `http://localhost:8080/product/?id=${id}`
+      `${API}/product/?id=${id}`
     );
     setData(response.data.data);
   };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import API from '../apiBase';
 
 function ProductEntryPage() {
   const [formData, setFormData] = useState({
@@ -71,7 +72,7 @@ function ProductEntryPage() {
     let requestData = await axios
 
       .post(
-        `http://localhost:8080/product/create-product?token=${token}`,
+        `${API}/product/create-product?token=${token}`,
 
         formDataBody,
         {

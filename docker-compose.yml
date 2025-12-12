@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  backend:
+    build: 
+      context: ./Backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DB_URL=${DB_URL}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID}
+      - RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET}
+      
+    volumes:
+      - ./Backend/src/Middlewares/uploads:/app/src/Middlewares/uploads
+    restart: unless-stopped
+
+  frontend:
+    build: 
+      context: ./Frontend
+      args:
+        VITE_API_URL: "http://backend:8080"
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

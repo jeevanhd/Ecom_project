@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartCard from "../Components/ProductCard/CartCard";
 import handelPay from "../Utils/RazorPay";
+import API from '../apiBase';
 
 const OrderConfirmation = () => {
   const [cartData, setCartData] = useState([]);
@@ -22,7 +23,7 @@ const OrderConfirmation = () => {
       }
       try {
         const response = await axios.get(
-          `http://localhost:8080/cart/get-user-cart-data?token=${token}`
+          `${API}/cart/get-user-cart-data?token=${token}`
         );
 
         if (response.data && response.data.cartData) {
@@ -51,7 +52,7 @@ const OrderConfirmation = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:8080/orders/confirm-order?token=${token}`,
+        `${API}/orders/confirm-order?token=${token}`,
         {
           Items: cartData,
           address: userAddress,

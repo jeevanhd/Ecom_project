@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from '../../apiBase';
 
 const AddressCard = () => {
   const [city, setCity] = useState("");
@@ -35,7 +36,7 @@ const AddressCard = () => {
     }
 
     const response = await axios.post(
-      `http://localhost:8080/user/add-address?token=${token}`,
+      `${API}/user/add-address?token=${token}`,
       addressData
     );
     navigate("/profile");

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import API from '../apiBase';
 
 function UpdateForm() {
   const { id } = useParams();
@@ -76,7 +77,7 @@ function UpdateForm() {
 
     let requestData = await axios
       .put(
-        `http://localhost:8080/product/update-product/${id}?token=${token}`,
+        `${API}/product/update-product/${id}?token=${token}`,
         formDataBody,
         {
           headers: {
@@ -105,7 +106,7 @@ function UpdateForm() {
   useEffect(() => {
     const getDataForId = async () => {
       const singleData = await axios.get(
-        `http://localhost:8080/product/get-single/${id}`
+        `${API}/product/get-single/${id}`
       );
       setFormData(singleData.data.data);
       setImages(singleData.data.images);

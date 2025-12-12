@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CartCard from "../Components/ProductCard/CartCard";
 import { useSelector } from "react-redux";
+import API from '../apiBase';
 
 const OrderHistoryPage = () => {
   const [orderData, setOrderData] = useState([]);
@@ -14,7 +15,7 @@ const OrderHistoryPage = () => {
     }
     try {
       const response = await axios.get(
-        `http://localhost:8080/orders/user-orders-data?token=${token}`
+        `${API}/orders/user-orders-data?token=${token}`
       );
 
       const reverseData = response.data.orders?.reverse();
@@ -37,7 +38,7 @@ const OrderHistoryPage = () => {
 
     try {
       await axios.patch(
-        `http://localhost:8080/orders/cancel-order?token=${token}&orderId=${id}`
+        `${API}/orders/cancel-order?token=${token}&orderId=${id}`
       );
 
       fetchOrderProducts();

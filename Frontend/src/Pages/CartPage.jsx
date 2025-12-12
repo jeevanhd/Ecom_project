@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import CartCard from "../Components/ProductCard/CartCard";
+import API from '../apiBase';
 
 const CartPage = () => {
   const [UsersCartData, setUsersCartData] = useState([]);
@@ -11,7 +12,7 @@ const CartPage = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(
-        `http://localhost:8080/cart/delete-from-cart?token=${token}&id=${productId}`
+        `${API}/cart/delete-from-cart?token=${token}&id=${productId}`
       );
       // Update local state by removing the deleted item
       setUsersCartData(prev => prev.filter(item => item.productId._id !== productId));
@@ -35,7 +36,7 @@ const CartPage = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:8080/cart/get-user-cart-data?token=${token}`
+          `${API}/cart/get-user-cart-data?token=${token}`
         );
         setUsersCartData(response.data.cartData);
       } catch (error) {

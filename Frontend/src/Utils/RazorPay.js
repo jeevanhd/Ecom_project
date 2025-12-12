@@ -1,9 +1,10 @@
 import axios from "axios";
+import API from '../apiBase';
 
 const handelPay = async (total, toke, orderIds) => {
   try {
     const createOrderResponse = await axios.post(
-      `http://localhost:8080/payment/create-order`,
+      `${API}/payment/create-order`,
       {
         amount: total,
         currency: "INR",
@@ -12,7 +13,7 @@ const handelPay = async (total, toke, orderIds) => {
     const { amount, id: orderId, currency } = createOrderResponse.data.orders;
 
     const response = await axios.get(
-      `http://localhost:8080/payment/get-razorpay-key`
+      `${API}/payment/get-razorpay-key`
     );
 
     const keys = response.data;
@@ -28,7 +29,7 @@ const handelPay = async (total, toke, orderIds) => {
       order_id: orderId,
       handler: async function (response) {
         const result = await axios.post(
-          `http://localhost:8080/payment/pay-order?token=${token}`,
+          `${API}/payment/pay-order?token=${token}`,
           {
             amount: amount,
             razorpayPaymentId: response.razorpay_payment_id,

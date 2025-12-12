@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AddressList from "../Components/Profile/AddressList";
+import API from '../apiBase';
 
 const SelectAddressPage = () => {
   const [allAddresses, setAllAddress] = useState([]);
@@ -17,7 +18,7 @@ const SelectAddressPage = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:8080/user/get-address?token=${token}`
+          `${API}/user/get-address?token=${token}`
         );
         setAllAddress(response.data.userInfo.address);
       } catch (error) {

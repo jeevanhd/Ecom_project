@@ -2,6 +2,7 @@ import axios from "axios";
 import { Edit, Eye, Heart, ShoppingCart, Star, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import API from '../../apiBase';
 
 function Card({
   title,
@@ -22,7 +23,7 @@ function Card({
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `http://localhost:8080/cart/add-to-cart?token=${token}`,
+        `${API}/cart/add-to-cart?token=${token}`,
         { productId: id, quantity: 1 }
       );
       // Add success notification here
