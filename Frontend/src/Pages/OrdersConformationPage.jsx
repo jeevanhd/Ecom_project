@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartCard from "../Components/ProductCard/CartCard";
@@ -51,7 +51,7 @@ const OrderConfirmation = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:8080/order/confirm-order?token=${token}`,
+        `http://localhost:8080/orders/confirm-order?token=${token}`,
         {
           Items: cartData,
           address: userAddress,
