@@ -4,7 +4,11 @@ dist
 npm-debug.log
 yarn-error.log
 pnpm-lock.yaml
-package-lock.json
+
+# Keep lockfiles so builds can be reproducible and cached
+!package-lock.json
+!yarn.lock
+!pnpm-lock.yaml
 
 .env
 .env.local

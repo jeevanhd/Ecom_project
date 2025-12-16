@@ -1,7 +1,15 @@
 node_modules
 npm-debug.log
 .env
+.env.*
 .git
 .gitignore
 .DS_Store
 temp-uploads
+
+dist
+build
+coverage
+*.log
+
+src/Middlewares/uploads
