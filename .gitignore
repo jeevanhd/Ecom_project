@@ -1,3 +1,29 @@
 .env
+.env.*
+!.env.example
+!.env.template
+
+# Editors/IDE
 .vscode
+.idea
+
+# Node
+**/node_modules/
+**/dist/
+**/build/
+**/coverage/
+**/.cache/
+**/.vite/
+**/*.log
+**/.eslintcache
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# App artifacts
+Backend/src/Middlewares/uploads/*
+!Backend/src/Middlewares/uploads/.gitkeep
+
+# Repo-specific
 plan-followAlongEcomApp.prompt.md
